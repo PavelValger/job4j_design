@@ -11,6 +11,9 @@ sudo: false
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 
+script:
+  - mvn test -B
+
 # Отправлять уведомление на почту pavelwalker@mail.ru если сборка упала
 notifications:
   email:
@@ -18,3 +21,4 @@ notifications:
       - pavelwalker@mail.ru
     on_success: never # default: change
     on_failure: always # default: always
+
