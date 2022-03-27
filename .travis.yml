@@ -3,10 +3,6 @@ language: java
 jdk:
   - openjdk16
 
-env:
-  global:
-    - CODECOV_TOKEN="5f23b3ee-1f2b-44c5-8e17-5e9e17f98408"
-
 # используем режим обычного пользователя для сборки проекта.
 sudo: false
 
