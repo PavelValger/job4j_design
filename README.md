@@ -1,5 +1,7 @@
 # job4j_design
 
+[![Build Status](https://app.travis-ci.com/PavelValger/job4j_design.svg?branch=main)](https://app.travis-ci.com/PavelValger/job4j_design)
+
 Проект "job4j_design" содержит решения блока "Структуры данных и алгоритмы" курса Job4j.
 
 - [x] Параметризованные типы, Wildcard.
