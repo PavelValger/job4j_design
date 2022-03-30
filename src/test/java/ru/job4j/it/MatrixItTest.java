@@ -81,8 +81,7 @@ public class MatrixItTest {
         };
         var it = new MatrixIt(in);
         assertTrue(it.hasNext());
-        it.next();
-        assertFalse(it.hasNext());
+        assertTrue(it.hasNext());
     }
 
     @Test
