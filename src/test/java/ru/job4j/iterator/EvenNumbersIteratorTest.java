@@ -18,20 +18,20 @@ public class EvenNumbersIteratorTest {
 
     @Test(expected = NoSuchElementException.class)
     public void shouldReturnEvenNumbersSequentially() {
-        assertThat(it.hasNext(), is(true));
+        assertTrue(it.hasNext());
         assertThat(it.next(), is(2));
-        assertThat(it.hasNext(), is(true));
+        assertTrue(it.hasNext());
         assertThat(it.next(), is(4));
-        assertThat(it.hasNext(), is(true));
+        assertTrue(it.hasNext());
         assertThat(it.next(), is(6));
-        assertThat(it.hasNext(), is(false));
+        assertFalse(it.hasNext());
         it.next();
     }
 
     @Test
     public void sequentialHasNextInvocationDoesntAffectRetrievalOrder() {
-        assertThat(it.hasNext(), is(true));
-        assertThat(it.hasNext(), is(true));
+        assertTrue(it.hasNext());
+        assertTrue(it.hasNext());
         assertThat(it.next(), is(2));
         assertThat(it.next(), is(4));
         assertThat(it.next(), is(6));
@@ -40,18 +40,18 @@ public class EvenNumbersIteratorTest {
     @Test
     public void  shouldReturnFalseIfNoAnyEvenNumbers() {
         it = new EvenNumbersIterator(new int[]{1});
-        assertThat(it.hasNext(), is(false));
+        assertFalse(it.hasNext());
     }
 
     @Test
     public void allNumbersAreEven() {
         it = new EvenNumbersIterator(new int[] {2, 4, 6});
-        assertThat(it.hasNext(), is(true));
+        assertTrue(it.hasNext());
         assertThat(it.next(), is(2));
-        assertThat(it.hasNext(), is(true));
+        assertTrue(it.hasNext());
         assertThat(it.next(), is(4));
-        assertThat(it.hasNext(), is(true));
+        assertTrue(it.hasNext());
         assertThat(it.next(), is(6));
-        assertThat(it.hasNext(), is(false));
+        assertFalse(it.hasNext());
     }
 }
