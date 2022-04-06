@@ -7,6 +7,7 @@ import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.stream.IntStream;
+import static org.junit.Assert.assertNull;
 
 public class SimpleArrayListTest {
 
@@ -14,7 +15,7 @@ public class SimpleArrayListTest {
 
     @Before
     public void initData() {
-        list = new SimpleArrayList<>(3);
+        list = new SimpleArrayList<>(0);
         list.add(1);
         list.add(2);
         list.add(3);
@@ -91,6 +92,21 @@ public class SimpleArrayListTest {
     public void whenGetIteratorTwiceThenStartAlwaysFromBeginning() {
         Assert.assertEquals(Integer.valueOf(1), list.iterator().next());
         Assert.assertEquals(Integer.valueOf(1), list.iterator().next());
+    }
+
+    @Test
+    public void whenCheckIteratorNull() {
+        list.add(null);
+        Iterator<Integer> iterator = list.iterator();
+        Assert.assertTrue(iterator.hasNext());
+        Assert.assertEquals(Integer.valueOf(1), iterator.next());
+        Assert.assertTrue(iterator.hasNext());
+        Assert.assertEquals(Integer.valueOf(2), iterator.next());
+        Assert.assertTrue(iterator.hasNext());
+        Assert.assertEquals(Integer.valueOf(3), iterator.next());
+        Assert.assertTrue(iterator.hasNext());
+        assertNull(iterator.next());
+        Assert.assertFalse(iterator.hasNext());
     }
 
     @Test
