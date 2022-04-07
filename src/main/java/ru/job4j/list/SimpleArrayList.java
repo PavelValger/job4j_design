@@ -11,17 +11,17 @@ public class SimpleArrayList<T> implements List<T> {
         this.container = (T[]) new Object[capacity];
     }
 
-    private T[] copyOf() {
+    private void copyOf() {
         if (container.length == 0) {
-            return  (T[]) new Object[3];
+            container = (T[]) new Object[3];
         }
-        return Arrays.copyOf(container, container.length * 2);
+        container =  Arrays.copyOf(container, container.length * 2);
     }
 
     @Override
     public void add(T value) {
         if (size == container.length) {
-            container = copyOf();
+            copyOf();
         }
         container[size] = value;
         size++;
@@ -59,16 +59,16 @@ public class SimpleArrayList<T> implements List<T> {
 
     @Override
     public Iterator<T> iterator() {
-        final int[] count = {0};
-        int expectedModCount = modCount;
         return new Iterator<>() {
+            private int index = 0;
+            private final int expectedModCount = modCount;
 
             @Override
             public boolean hasNext() {
                 if (expectedModCount != modCount) {
                     throw new ConcurrentModificationException();
                 }
-                return count[0] < size;
+                return index < size;
             }
 
             @Override
@@ -76,7 +76,7 @@ public class SimpleArrayList<T> implements List<T> {
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
-                return container[count[0]++];
+                return container[index++];
             }
         };
     }
