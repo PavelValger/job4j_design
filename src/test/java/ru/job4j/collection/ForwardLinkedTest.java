@@ -30,4 +30,16 @@ public class ForwardLinkedTest {
         var it = linked.iterator();
         assertThat(it.next(), is(2));
     }
+
+    @Test
+    public void whenAddFirstAndMultiDelete() {
+        ForwardLinked<Integer> linked = new ForwardLinked<>();
+        linked.addFirst(1);
+        linked.addFirst(2);
+        linked.addFirst(3);
+        assertThat(linked.deleteFirst(), is(3));
+        var it = linked.iterator();
+        assertThat(it.next(), is(2));
+        assertThat(it.next(), is(1));
+    }
 }
