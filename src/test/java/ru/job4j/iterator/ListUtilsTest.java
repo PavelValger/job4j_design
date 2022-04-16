@@ -29,6 +29,13 @@ public class ListUtilsTest {
         assertThat(input, is(List.of(0, 1, 2, 3)));
     }
 
+    @Test
+    public void whenAddAfterMiddle() {
+        List<Integer> input = new ArrayList<>(Arrays.asList(0, 1, 2));
+        ListUtils.addAfter(input, 1, 3);
+        assertThat(input, is(List.of(0, 1, 3, 2)));
+    }
+
     @Test(expected = IndexOutOfBoundsException.class)
     public void whenAddAfterLastWithInvalidIndex() {
         List<Integer> input = new ArrayList<>(Arrays.asList(1, 3));
@@ -66,6 +73,15 @@ public class ListUtilsTest {
         List<Integer> source = new ArrayList<>(Arrays.asList(0, 1, 0, 1, 2, 3, 4));
         List<Integer> clear = new ArrayList<>(List.of(0, 2, 4));
         ListUtils.removeAll(source, clear);
-        assertThat(source, is(Arrays.asList(1, 1, 3)));
+        assertThat(source, is(List.of(1, 1, 3)));
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void whenRemoveAllNull() {
+        List<String> source = new ArrayList<>(Arrays.asList("1", "2"));
+        List<String> clear = new ArrayList<>();
+        clear.add("1");
+        clear.add(null);
+        ListUtils.removeAll(source, clear);
     }
 }
