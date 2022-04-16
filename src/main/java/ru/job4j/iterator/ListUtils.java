@@ -77,6 +77,7 @@ public class ListUtils {
      * @param filter принимает Predicate.
      * @param value значение элемента.
      * @param <T> обобщенный тип.
+     * @exception NullPointerException если Predicate не имеет функции.
      */
     public static <T> void replaceIf(List<T> list, Predicate<T> filter, T value) {
         Objects.requireNonNull(filter);
