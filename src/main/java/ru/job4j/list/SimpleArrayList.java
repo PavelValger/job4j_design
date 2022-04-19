@@ -80,4 +80,23 @@ public class SimpleArrayList<T> implements List<T> {
             }
         };
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        SimpleArrayList<?> that = (SimpleArrayList<?>) o;
+        return size == that.size && Arrays.equals(container, that.container);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(size);
+        result = 31 * result + Arrays.hashCode(container);
+        return result;
+    }
 }
