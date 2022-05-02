@@ -56,13 +56,13 @@ public class SimpleMap<K, V> implements MapHash<K, V> {
     @Override
     public boolean put(K key, V value) {
         boolean rsl = false;
-        expand();
         int indexTable = index(key);
         if (table[indexTable] == null) {
             table[indexTable] = new MapEntry<>(key, value);
             count++;
             modCount++;
             rsl = true;
+            expand();
         }
         return rsl;
     }
