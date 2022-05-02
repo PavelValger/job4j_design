@@ -20,11 +20,11 @@ public class SimpleMap<K, V> implements MapHash<K, V> {
     }
 
     private int hash(int hashCode) {
-        return hashCode ^ (hashCode >>> 16);
+        return Math.abs(hashCode ^ (hashCode >>> 16));
     }
 
     private int indexFor(int hash) {
-        return hash & (table.length - 1);
+        return hash % (table.length - 1);
     }
 
     private void expand() {
@@ -32,6 +32,7 @@ public class SimpleMap<K, V> implements MapHash<K, V> {
             var interim = table;
             capacity *= 2;
             table = new MapEntry[capacity];
+            count = 0;
             for (MapEntry<K, V> object : interim) {
                 if (object != null) {
                     put(object.key, object.value);
@@ -46,6 +47,10 @@ public class SimpleMap<K, V> implements MapHash<K, V> {
 
     public int getCapacity() {
         return capacity;
+    }
+
+    public int getCount() {
+        return count;
     }
 
     @Override
@@ -64,14 +69,16 @@ public class SimpleMap<K, V> implements MapHash<K, V> {
 
     @Override
     public V get(K key) {
-        return table[index(key)] == null ? null : table[index(key)].value;
+        int indexTable = index(key);
+        return table[indexTable] == null ? null : table[indexTable].value;
     }
 
     @Override
     public boolean remove(K key) {
         boolean rsl = false;
-        if (table[index(key)] != null) {
-            table[index(key)] = null;
+        int indexTable = index(key);
+        if (table[indexTable] != null) {
+            table[indexTable] = null;
             count--;
             modCount++;
             rsl = true;
