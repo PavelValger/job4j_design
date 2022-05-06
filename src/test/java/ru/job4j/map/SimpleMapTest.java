@@ -44,6 +44,15 @@ public class SimpleMapTest {
     }
 
     @Test
+    public void whenGetDifferentKeySimilarIndex() {
+        SimpleMap<Object, String> simpleMap = new SimpleMap<>();
+        Calendar birthday = new GregorianCalendar(1992, Calendar.MAY, 4);
+        User user = new User("Pavel", 30, birthday);
+        simpleMap.put(user, "void");
+        Assert.assertNull(simpleMap.get(11));
+    }
+
+    @Test
     public void whenGetEmpty() {
         SimpleMap<Integer, String> simpleMap = new SimpleMap<>();
         simpleMap.put(1, "one");
@@ -68,9 +77,13 @@ public class SimpleMapTest {
 
     @Test
     public void whenRemoveThenFalse() {
-        SimpleMap<Integer, String> simpleMap = new SimpleMap<>();
+        SimpleMap<Object, String> simpleMap = new SimpleMap<>();
+        Calendar birthday = new GregorianCalendar(1992, Calendar.MAY, 4);
+        User user = new User("Pavel", 30, birthday);
+        simpleMap.put(user, "void");
         simpleMap.put(1, "one");
         Assert.assertFalse(simpleMap.remove(5));
+        Assert.assertFalse(simpleMap.remove(11));
     }
 
     @Ignore
