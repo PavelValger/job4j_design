@@ -45,6 +45,13 @@ public class SimpleMap<K, V> implements MapHash<K, V> {
         return key == null ? 0 : indexFor(hash(key.hashCode()));
     }
 
+    private boolean removeTrue(int indexTable) {
+        table[indexTable] = null;
+        count--;
+        modCount++;
+        return true;
+    }
+
     public int getCapacity() {
         return capacity;
     }
@@ -69,19 +76,28 @@ public class SimpleMap<K, V> implements MapHash<K, V> {
 
     @Override
     public V get(K key) {
+        V rsl = null;
         int indexTable = index(key);
-        return table[indexTable] == null ? null : table[indexTable].value;
+        if (table[indexTable] != null && indexTable != 0
+                && table[indexTable].key.equals(key)) {
+            rsl = table[indexTable].value;
+        }
+        if (indexTable == 0 && table[indexTable] != null) {
+            rsl = table[indexTable].value;
+        }
+        return rsl;
     }
 
     @Override
     public boolean remove(K key) {
         boolean rsl = false;
         int indexTable = index(key);
-        if (table[indexTable] != null) {
-            table[indexTable] = null;
-            count--;
-            modCount++;
-            rsl = true;
+        if (table[indexTable] != null && indexTable != 0
+                && table[indexTable].key.equals(key)) {
+            rsl = removeTrue(indexTable);
+        }
+        if (table[indexTable] != null && indexTable == 0) {
+            rsl = removeTrue(indexTable);
         }
         return rsl;
     }
