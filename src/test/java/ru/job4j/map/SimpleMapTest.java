@@ -23,7 +23,7 @@ public class SimpleMapTest {
     public void whenAddFalse() {
         SimpleMap<Object, Integer> simpleMap = new SimpleMap<>();
         Calendar birthday = new GregorianCalendar(1992, Calendar.MAY, 4);
-        User user = new User("Pavel", 30, birthday);
+        User user = new User("Pav", 30, birthday);
         simpleMap.put("key", 5);
         Assert.assertTrue(simpleMap.put("100", 100));
         Assert.assertTrue(simpleMap.put(user, 800));
@@ -91,12 +91,12 @@ public class SimpleMapTest {
     public void whenAddMoreLoadFactor() {
         SimpleMap<Object, String> simpleMap = new SimpleMap<>();
         Calendar birthday = new GregorianCalendar(1992, Calendar.MAY, 4);
-        User user = new User("Pavel", 30, birthday);
+        User user = new User("Pav", 30, birthday);
         simpleMap.put(null, "null");
         Assert.assertTrue(simpleMap.put(2, "2"));
         Assert.assertTrue(simpleMap.put(3, "3"));
         Assert.assertTrue(simpleMap.put(user, "user"));
-        Assert.assertTrue(simpleMap.put(5, "5"));
+        Assert.assertTrue(simpleMap.put(1, "1"));
         Assert.assertTrue(simpleMap.put(6, "6"));
         Assert.assertTrue(simpleMap.put(13, "13"));
         Assert.assertThat(simpleMap.getCapacity(), Is.is(16));
