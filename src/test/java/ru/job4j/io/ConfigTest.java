@@ -22,6 +22,7 @@ public class ConfigTest {
         Config config = new Config(path);
         config.load();
         assertThat(config.value("2"), is("Pavel"));
+        assertThat(config.value("3#"), is("#Ivan#"));
         assertNull(config.value("1"));
     }
 

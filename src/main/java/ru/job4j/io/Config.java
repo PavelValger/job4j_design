@@ -18,9 +18,9 @@ public class Config {
     public void load() {
         try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
             for (String line = read.readLine(); line != null; line = read.readLine()) {
-                if (!line.contains("#") && !line.isEmpty()) {
+                if (!line.startsWith("#") && !line.isEmpty()) {
                     String[] divider = line.split("=", 2);
-                    if (divider.length != 2 || divider[0].equals("") || divider[1].equals("")) {
+                    if (divider.length != 2 || divider[0].isEmpty() || divider[1].isEmpty()) {
                         throw new IllegalArgumentException(
                                 "Attention! Incorrect characters in the document."
                         );
