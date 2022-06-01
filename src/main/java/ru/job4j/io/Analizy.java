@@ -29,16 +29,4 @@ public class Analizy {
             e.printStackTrace();
         }
     }
-
-    public String recite(String target) {
-        StringBuilder rsl = new StringBuilder();
-        try (BufferedReader read = new BufferedReader(new FileReader(target))) {
-            for (String line = read.readLine(); line != null; line = read.readLine()) {
-                rsl.append(line);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return rsl.toString();
-    }
 }
