@@ -18,8 +18,7 @@ public class Dir {
                     String.format("Not directory %s", file.getAbsoluteFile()));
         }
         Arrays.stream(Objects.requireNonNull(file.listFiles()))
-                .forEach((subFile) -> out.printf("%s%n",
-                "file name: " + subFile.getName()
-                        + ", file size: " + subFile.length() / 1024 + " kB"));
+                .forEach((subFile) -> out.printf("file name: %s, file size: %.4f MB%n",
+                subFile.getName(), (double) subFile.length() / 1048576));
     }
 }
