@@ -5,12 +5,10 @@ import java.nio.file.FileVisitResult;
 import java.nio.file.Path;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
-    private final Map<Path, FileProperty> originalMap = new HashMap<>();
-    private final Map<Path, FileProperty> copyMap = new HashMap<>();
+    private final Map<FileProperty, List<Path>> map = new HashMap<>();
 
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
@@ -18,17 +16,16 @@ public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
         if (path.isAbsolute()) {
             FileProperty fileProperty
                     = new FileProperty(file.toFile().length(), file.toFile().getName());
-            originalMap.put(path, fileProperty);
+            var keySearch = map.putIfAbsent(fileProperty, new ArrayList<>());
+            var value = map.get(fileProperty);
+            if (value.isEmpty() || keySearch != null) {
+                value.add(path);
+            }
         }
-        copyMap.putAll(originalMap);
         return super.visitFile(file, attrs);
     }
 
-    public Map<Path, FileProperty> getOriginalMap() {
-        return originalMap;
-    }
-
-    public Map<Path, FileProperty> getCopyMap() {
-        return copyMap;
+    public Map<FileProperty, List<Path>> getMap() {
+        return map;
     }
 }

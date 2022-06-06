@@ -2,27 +2,15 @@ package ru.job4j.io.duplicates;
 
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Map;
 
 public class DuplicatesFinder {
 
     private static void collector(DuplicatesVisitor visitor) {
-        var originalMap = visitor.getOriginalMap();
-        if (!originalMap.isEmpty()) {
-            for (Map.Entry<Path, FileProperty> entry : originalMap.entrySet()) {
-                var key = entry.getKey();
-                var value = entry.getValue();
-                for (Map.Entry<Path, FileProperty> entryCopy : visitor.getCopyMap().entrySet()) {
-                    var keyCopy = entryCopy.getKey();
-                    var valueCopy = entryCopy.getValue();
-                    if (value.equals(valueCopy) && !key.equals(keyCopy)) {
-                        System.out.println(key);
-                        break;
-                    }
-                }
-            }
+        var map = visitor.getMap();
+        if (!map.isEmpty()) {
+            map.entrySet().stream().filter(k -> k.getValue().size() > 1)
+                    .forEach(System.out::println);
         }
     }
 

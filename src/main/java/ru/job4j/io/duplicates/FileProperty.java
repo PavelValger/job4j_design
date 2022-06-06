@@ -47,7 +47,8 @@ public class FileProperty {
     @Override
     public String toString() {
         return "FileProperty{"
-                + "size=" + size
+                + "size=" + size / 1048576
+                + "MB"
                 + ", name='" + name + '\''
                 + '}';
     }
