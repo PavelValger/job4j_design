@@ -7,14 +7,8 @@ import java.nio.file.Paths;
 import java.util.Map;
 
 public class DuplicatesFinder {
-    public static void main(String[] args) {
-        DuplicatesVisitor visitor = new DuplicatesVisitor();
-        try {
-            Files.walkFileTree(Paths.get("C:\\Users\\Павел\\Desktop\\music"),
-                    visitor);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+    private static void collector(DuplicatesVisitor visitor) {
         var originalMap = visitor.getOriginalMap();
         if (!originalMap.isEmpty()) {
             for (Map.Entry<Path, FileProperty> entry : originalMap.entrySet()) {
@@ -30,5 +24,16 @@ public class DuplicatesFinder {
                 }
             }
         }
+    }
+
+    public static void main(String[] args) {
+        DuplicatesVisitor visitor = new DuplicatesVisitor();
+        try {
+            Files.walkFileTree(Paths.get("C:\\Users\\Павел\\Desktop\\music"),
+                    visitor);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        collector(visitor);
     }
 }
