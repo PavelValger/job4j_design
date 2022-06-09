@@ -8,9 +8,18 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public class Search {
+
+    private static void validation(String[] args) {
+        if (args.length < 2) {
+            throw new IllegalArgumentException(
+                    "Root folder or file extension is null. Usage java -jar search.jar");
+        }
+    }
+
     public static void main(String[] args) {
-        Path start = Paths.get("C:\\projects");
-        search(start, p -> p.toFile().getName().endsWith(".iml")).forEach(System.out::println);
+        validation(args);
+        Path start = Paths.get(args[0]);
+        search(start, p -> p.toFile().getName().endsWith(args[1])).forEach(System.out::println);
     }
 
     public static List<Path> search(Path root, Predicate<Path> condition) {
