@@ -15,6 +15,19 @@ public class Search {
                     "Root folder or file extension is null."
                             + "Usage java -jar searchForInternalFolders.jar");
         }
+        var file = Paths.get(args[0]).toFile();
+        if (!file.exists()) {
+            throw new IllegalArgumentException(
+                    String.format("Not exist %s", file.getAbsolutePath()));
+        }
+        if (!file.isDirectory()) {
+            throw new IllegalArgumentException(
+                    String.format("Not directory %s", file.getAbsolutePath()));
+        }
+        if (!args[1].startsWith(".")) {
+            throw new IllegalArgumentException(
+                    "The file extension must start with the character \".\"");
+        }
     }
 
     public static void main(String[] args) {
