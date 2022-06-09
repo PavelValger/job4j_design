@@ -12,7 +12,8 @@ public class Search {
     private static void validation(String[] args) {
         if (args.length < 2) {
             throw new IllegalArgumentException(
-                    "Root folder or file extension is null. Usage java -jar search.jar");
+                    "Root folder or file extension is null."
+                            + "Usage java -jar searchForInternalFolders.jar");
         }
     }
 
