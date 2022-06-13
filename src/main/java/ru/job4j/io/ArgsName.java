@@ -14,7 +14,7 @@ public class ArgsName {
     }
 
     private void pattern(String string) {
-        if (!string.matches("-.+=.+")) {
+        if (!string.matches("-[^=]+=.+")) {
             throw new IllegalArgumentException("Incorrect parameter input.");
         }
     }
@@ -26,7 +26,7 @@ public class ArgsName {
         for (String string : args) {
             pattern(string);
             String[] divider = string.split("=", 2);
-            values.put(divider[0].replace("-", ""), divider[1]);
+            values.put(divider[0].substring(1), divider[1]);
         }
     }
 

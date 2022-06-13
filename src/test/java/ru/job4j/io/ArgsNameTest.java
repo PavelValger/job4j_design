@@ -57,6 +57,11 @@ public class ArgsNameTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
+    public void whenNoKeyAndDoubleEquals() {
+        ArgsName jvm = ArgsName.of(new String[] {"-==password"});
+    }
+
+    @Test(expected = IllegalArgumentException.class)
     public void whenNoEquality() {
         ArgsName jvm = ArgsName.of(new String[] {"-enconding:UTF-8"});
     }
