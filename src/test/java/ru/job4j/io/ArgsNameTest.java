@@ -12,6 +12,11 @@ public class ArgsNameTest {
         assertThat(jvm.get("Xmx"), is("512"));
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void whenGetSecond() {
+        ArgsName jvm = ArgsName.of(new String[] {"-Xmx=512", "e-ncoding=UTF-8"});
+    }
+
     @Test
     public void whenGetFirstReorder() {
         ArgsName jvm = ArgsName.of(new String[] {"-encoding=UTF-8", "-Xmx=512"});

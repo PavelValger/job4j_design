@@ -13,9 +13,8 @@ public class ArgsName {
         return values.get(key);
     }
 
-    private void pattern(String[] divider, String key) {
-        if (divider.length != 2 || key.isEmpty()
-                || !divider[0].startsWith("-") || divider[1].isEmpty()) {
+    private void pattern(String string) {
+        if (!string.matches("-\\w+=.+")) {
             throw new IllegalArgumentException("Incorrect parameter input.");
         }
     }
@@ -24,11 +23,10 @@ public class ArgsName {
         if (args.length == 0) {
             throw new IllegalArgumentException("Parameters not entered.");
         }
-        for (String str : args) {
-            String[] divider = str.split("=", 2);
-            var key = divider[0].replace("-", "");
-            pattern(divider, key);
-            values.put(key, divider[1]);
+        for (String string : args) {
+            pattern(string);
+            String[] divider = string.split("=", 2);
+            values.put(divider[0].replace("-", ""), divider[1]);
         }
     }
 
