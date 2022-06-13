@@ -14,7 +14,7 @@ public class ArgsName {
     }
 
     private void pattern(String string) {
-        if (!string.matches("-\\w+=.+")) {
+        if (!string.matches("-.+=.+")) {
             throw new IllegalArgumentException("Incorrect parameter input.");
         }
     }

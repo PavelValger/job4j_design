@@ -12,6 +12,12 @@ public class ArgsNameTest {
         assertThat(jvm.get("Xmx"), is("512"));
     }
 
+    @Test
+    public void whenGetKeyWithDot() {
+        ArgsName jvm = ArgsName.of(new String[] {"-hibernate.connection.password=password"});
+        assertThat(jvm.get("hibernate.connection.password"), is("password"));
+    }
+
     @Test(expected = IllegalArgumentException.class)
     public void whenGetSecond() {
         ArgsName jvm = ArgsName.of(new String[] {"-Xmx=512", "e-ncoding=UTF-8"});
