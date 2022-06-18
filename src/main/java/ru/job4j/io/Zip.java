@@ -10,17 +10,21 @@ import java.util.zip.ZipOutputStream;
 public class Zip {
 
     private static void validation(ArgsName value) {
-        if (value.get("d").isEmpty() || value.get("e").isEmpty() || value.get("o").isEmpty()) {
-            throw new IllegalArgumentException("Incorrect parameter input.");
-        }
         var file = Paths.get(value.get("d")).toFile();
         if (!file.exists()) {
             throw new IllegalArgumentException(
-                    String.format("The directory does not exist %s", file.getAbsolutePath()));
+                    String.format("The directory does not exist %s.", file.getAbsolutePath()));
         }
         if (!file.isDirectory()) {
             throw new IllegalArgumentException(
-                    String.format("Is not a directory %s", file.getAbsolutePath()));
+                    String.format("Is not a directory %s.", file.getAbsolutePath()));
+        }
+        if (!value.get("e").startsWith(".")) {
+            throw new IllegalArgumentException("The file extension must start with a dot.");
+        }
+        if (!value.get("o").endsWith(".zip")) {
+            throw new IllegalArgumentException(
+                    "The archived directory must have the extension \".zip\".");
         }
     }
 
