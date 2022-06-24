@@ -21,6 +21,7 @@ public class ConsoleChat {
 
     public void run() {
         List<String> log = new LinkedList<>();
+        List<String> read = readPhrases();
         var scanner = new Scanner(System.in);
         addAnswer("-Задайте волнующий вас вопрос:", log);
         var botRun = true;
@@ -41,7 +42,6 @@ public class ConsoleChat {
                     addAnswer("-Бот продолжает работу! Задайте волнующий Вас вопрос:", log);
                     continue;
                 }
-                List<String> read = readPhrases();
                 int random = new Random().nextInt(read.size());
                 var answer = String.format("-%s", read.get(random));
                 addAnswer(answer, log);
