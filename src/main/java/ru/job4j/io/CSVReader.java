@@ -14,10 +14,10 @@ public class CSVReader {
     private static final List<String> RSL = new LinkedList<>();
     private static final List<Integer> FILTERED = new LinkedList<>();
 
-    private static void stringBuilder(String[] divider) {
+    private static void stringBuilder(String[] divider, String delimiter) {
         var stringBuilder = new StringBuilder();
         for (Integer index : FILTERED) {
-            stringBuilder.append(String.format("%s;", divider[index]));
+            stringBuilder.append(String.format("%s" + delimiter, divider[index]));
         }
         if (stringBuilder.length() > 0) {
             RSL.add(stringBuilder.substring(0, stringBuilder.length() - 1));
@@ -37,10 +37,10 @@ public class CSVReader {
                         }
                     }
                 }
-                stringBuilder(cell);
+                stringBuilder(cell, delimiter);
                 while (scanner.hasNextLine()) {
                     String[] divider = scanner.nextLine().split(delimiter);
-                    stringBuilder(divider);
+                    stringBuilder(divider, delimiter);
                 }
             }
         } catch (IOException e) {
