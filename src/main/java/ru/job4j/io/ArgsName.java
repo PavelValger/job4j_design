@@ -35,4 +35,8 @@ public class ArgsName {
         names.parse(args);
         return names;
     }
+
+    public Map<String, String> getValues() {
+        return values;
+    }
 }
