@@ -16,9 +16,8 @@ public class CSVReader {
 
     private static void stringBuilder(String[] divider, String delimiter) {
         var stringBuilder = new StringBuilder();
-        for (Integer index : FILTERED) {
-            stringBuilder.append(divider[index]).append(delimiter);
-        }
+        FILTERED.stream().map(index -> divider[index])
+                .forEach(ap -> stringBuilder.append(ap).append(delimiter));
         if (stringBuilder.length() > 0) {
             RSL.add(stringBuilder.substring(0, stringBuilder.length() - 1));
         }
