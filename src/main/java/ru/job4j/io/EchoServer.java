@@ -33,6 +33,8 @@ public class EchoServer {
                     out.flush();
                 }
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
