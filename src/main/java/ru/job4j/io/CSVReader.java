@@ -52,7 +52,7 @@ public class CSVReader {
         try (PrintWriter out = new PrintWriter(
                 new FileWriter(path, CODING, false))) {
             target.forEach(out::println);
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
