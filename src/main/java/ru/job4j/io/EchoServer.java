@@ -17,14 +17,14 @@ public class EchoServer {
                              new InputStreamReader(socket.getInputStream()))) {
                     out.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
                     String string = in.readLine();
-                    if (string.contains("=Bye")) {
+                    if (!string.contains("=Bye")) {
+                        for (String line = string;
+                             line != null && !line.isEmpty(); line = in.readLine()) {
+                            System.out.println(line);
+                        }
+                    } else {
                         server.close();
                         System.out.println("The server has shut down");
-                        break;
-                    }
-                    for (String line = string;
-                         line != null && !line.isEmpty(); line = in.readLine()) {
-                        System.out.println(line);
                     }
                     out.flush();
                 }
