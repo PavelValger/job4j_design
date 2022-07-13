@@ -33,7 +33,7 @@ public class EchoServer {
                             server.close();
                             System.out.println("The server has shut down");
                         }
-                       out.flush();
+                        out.flush();
                     }
                 }
             }
