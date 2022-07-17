@@ -1,0 +1,17 @@
+2022-07-17 19:20:33,879 DEBUG ru.job4j.io.UsageLog4j:main:19 - User info name : Petr Arsentev
+2022-07-17 19:20:33,901 DEBUG ru.job4j.io.UsageLog4j:main:20 - byte : 127, short : 32000, int : 99999, long : 100500, float : 1.05, double : 100500.99, boolean : true, char : Y.
+2022-07-17 19:21:26,684 DEBUG ru.job4j.io.UsageLog4j:main:19 - User info name : Petr Arsentev
+2022-07-17 19:21:26,716 DEBUG ru.job4j.io.UsageLog4j:main:20 - byte : 127, short : 32000, int : 99999, long : 100500, float : 1.05, double : 100500.99, boolean : true, char : Y.
+2022-07-17 19:23:41,456  WARN ru.job4j.io.UsageLog4j:main:19 - User info name : Petr Arsentev
+2022-07-17 19:23:41,472  WARN ru.job4j.io.UsageLog4j:main:20 - byte : 127, short : 32000, int : 99999, long : 100500, float : 1.05, double : 100500.99, boolean : true, char : Y.
+2022-07-17 19:24:17,042 DEBUG ru.job4j.io.UsageLog4j:main:19 - User info name : Petr Arsentev
+2022-07-17 19:24:17,058  WARN ru.job4j.io.UsageLog4j:main:20 - byte : 127, short : 32000, int : 99999, long : 100500, float : 1.05, double : 100500.99, boolean : true, char : Y.
+2022-07-17 19:25:13,743 DEBUG ru.job4j.io.UsageLog4j:main:19 - User info name : Petr Arsentev
+2022-07-17 19:25:13,759  WARN ru.job4j.io.UsageLog4j:main:20 - byte : 127, short : 32000, int : 99999, long : 100500, float : 1.05, double : 100500.99, boolean : true, char : Y.
+2022-07-17 19:28:42,968 DEBUG ru.job4j.io.UsageLog4j:main:19 - User info name : Petr Arsentev
+2022-07-17 19:28:42,978  WARN ru.job4j.io.UsageLog4j:main:20 - byte : 127, short : 32000, int : 99999, long : 100500, float : 1.05, double : 100500.99, boolean : true, char : Y.
+2022-07-17 19:29:29,464 DEBUG ru.job4j.io.UsageLog4j:main:19 - User info name : Petr Arsentev
+2022-07-17 19:29:29,480  WARN ru.job4j.io.UsageLog4j:main:20 - byte : 127, short : 32000, int : 99999, long : 100500, float : 1.05, double : 100500.99, boolean : true, char : Y.
+2022-07-17 19:37:09,783 DEBUG ru.job4j.io.UsageLog4j:main:19 - User info name : Petr Arsentev
+2022-07-17 19:37:09,799  WARN ru.job4j.io.UsageLog4j:main:20 - byte : 127, short : 32000, int : 99999, long : 100500, float : 1.05, double : 100500.99, boolean : true, char : Y.
+2022-07-17 19:37:09,799 ERROR ru.job4j.io.UsageLog4j:main:23 - The arguments were not found

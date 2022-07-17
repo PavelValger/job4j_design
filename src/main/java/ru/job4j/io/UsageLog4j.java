@@ -17,7 +17,10 @@ public class UsageLog4j {
         boolean bl = true;
         char ch = 'Y';
         LOG.debug("User info name : {}", name);
-        LOG.debug("byte : {}, short : {}, int : {}, long : {}, float : {}, "
+        LOG.warn("byte : {}, short : {}, int : {}, long : {}, float : {}, "
                 + "double : {}, boolean : {}, char : {}.", bt, sh, in, ln, fl, db, bl, ch);
+        if (args.length == 0) {
+            LOG.error("The arguments were not found");
+        }
     }
 }
