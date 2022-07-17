@@ -8,10 +8,10 @@ import org.slf4j.LoggerFactory;
 
 public class EchoServer {
     private static final Logger LOG = LoggerFactory.getLogger(UsageLog4j.class.getName());
+    private static int count = 1;
 
     public static void main(String[] args) {
         try (ServerSocket server = new ServerSocket(9000)) {
-            int count = 1;
             System.out.println("Server started");
             while (!server.isClosed()) {
                 Socket socket = server.accept();
@@ -42,7 +42,7 @@ public class EchoServer {
                 }
             }
         } catch (IOException e) {
-            System.out.printf("Incorrect parameter input - \"%s\"\n", e.getMessage());
+            System.out.printf("User %s entered incorrect parameters\n", count);
             LOG.error("IOException in log example", e);
         }
     }
