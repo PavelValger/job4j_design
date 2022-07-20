@@ -11,7 +11,7 @@ public class Convert {
         System.out.println(gson.toJson(auto));
         final String autoJson =
                 "{"
-                        + "\"sex\":false,"
+                        + "\"move\":false,"
                         + "\"age\":15,"
                         + "\"colour\":green,"
                         + "\"number\":"
