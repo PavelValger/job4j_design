@@ -6,14 +6,14 @@ import com.google.gson.GsonBuilder;
 public class Convert {
     public static void main(String[] args) {
         final Auto auto = new Auto(true, 2, "red",
-                new Number("x103cx"), new String[] {"Transmission", "Drive"});
+                new Number("x103cx"), new String[]{"Transmission", "Drive"});
         final Gson gson = new GsonBuilder().create();
         System.out.println(gson.toJson(auto));
         final String autoJson =
                 "{"
                         + "\"move\":false,"
                         + "\"age\":15,"
-                        + "\"colour\":green,"
+                        + "\"colour\":\"green\","
                         + "\"number\":"
                         + "{"
                         + "\"state\":\"x103cx66RUS\""
