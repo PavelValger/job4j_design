@@ -1,27 +1,30 @@
 package ru.job4j.serialization.json;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+import java.io.IOException;
+import java.io.StringReader;
+import java.io.StringWriter;
 
 public class Convert {
-    public static void main(String[] args) {
-        final Auto auto = new Auto(true, 2, "red",
-                new Number("x103cx"), new String[]{"Transmission", "Drive"});
-        final Gson gson = new GsonBuilder().create();
-        System.out.println(gson.toJson(auto));
-        final String autoJson =
-                "{"
-                        + "\"move\":false,"
-                        + "\"age\":15,"
-                        + "\"colour\":\"green\","
-                        + "\"number\":"
-                        + "{"
-                        + "\"state\":\"x103cx66RUS\""
-                        + "},"
-                        + "\"characteristic\":"
-                        + "[\"AT\",\"4WD\"]"
-                        + "}";
-        final Auto autoMod = gson.fromJson(autoJson, Auto.class);
-        System.out.println(autoMod);
+    public static void main(String[] args) throws JAXBException, IOException {
+        Auto auto = new Auto(true, 2, "red",
+                new Number("x103cx"), "Transmission", "Drive");
+        JAXBContext context = JAXBContext.newInstance(Auto.class);
+        Marshaller marshaller = context.createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+        String xml = "";
+        try (StringWriter writer = new StringWriter()) {
+            marshaller.marshal(auto, writer);
+            xml = writer.getBuffer().toString();
+            System.out.println(xml);
+        }
+        Unmarshaller unmarshaller = context.createUnmarshaller();
+        try (StringReader reader = new StringReader(xml)) {
+            Auto result = (Auto) unmarshaller.unmarshal(reader);
+            System.out.println(result);
+        }
     }
 }

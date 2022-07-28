@@ -1,7 +1,15 @@
 package ru.job4j.serialization.json;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "number")
 public class Number {
-    private final String state;
+    @XmlAttribute
+    private String state;
+
+    public Number() {
+    }
 
     public Number(String state) {
         this.state = state;
