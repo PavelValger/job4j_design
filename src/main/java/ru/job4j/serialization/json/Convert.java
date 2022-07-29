@@ -1,30 +1,26 @@
 package ru.job4j.serialization.json;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
-import java.io.IOException;
-import java.io.StringReader;
-import java.io.StringWriter;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Convert {
-    public static void main(String[] args) throws JAXBException, IOException {
-        Auto auto = new Auto(true, 2, "red",
-                new Number("x103cx"), "Transmission", "Drive");
-        JAXBContext context = JAXBContext.newInstance(Auto.class);
-        Marshaller marshaller = context.createMarshaller();
-        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-        String xml = "";
-        try (StringWriter writer = new StringWriter()) {
-            marshaller.marshal(auto, writer);
-            xml = writer.getBuffer().toString();
-            System.out.println(xml);
-        }
-        Unmarshaller unmarshaller = context.createUnmarshaller();
-        try (StringReader reader = new StringReader(xml)) {
-            Auto result = (Auto) unmarshaller.unmarshal(reader);
-            System.out.println(result);
-        }
+    public static void main(String[] args) {
+        JSONObject jsonNumber = new JSONObject("{\"state\":\"x103cx\"}");
+        List<String> list = new ArrayList<>();
+        list.add("AT");
+        list.add("4WD");
+        JSONArray jsonCharacteristic = new JSONArray(list);
+        final Auto auto = new Auto(true, 2, "red",
+                new Number("x103cx96RUS"), "Transmission", "Drive");
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("move", auto.isMove());
+        jsonObject.put("age", auto.getAge());
+        jsonObject.put("colour", auto.getColour());
+        jsonObject.put("number", jsonNumber);
+        jsonObject.put("characteristic", jsonCharacteristic);
+        System.out.println(jsonObject);
+        System.out.println(new JSONObject(auto));
     }
 }

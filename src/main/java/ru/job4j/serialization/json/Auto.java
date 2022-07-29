@@ -1,24 +1,13 @@
 package ru.job4j.serialization.json;
 
 import java.util.Arrays;
-import javax.xml.bind.annotation.*;
 
-@XmlRootElement(name = "auto")
-@XmlAccessorType(XmlAccessType.FIELD)
 public class Auto {
-    @XmlAttribute
     private boolean move;
-    @XmlAttribute
     private int age;
-    @XmlAttribute
     private String colour;
     private Number number;
-    @XmlElementWrapper(name = "characteristices")
-    @XmlElement(name = "characteristic")
     private String[] characteristic;
-
-    public Auto() {
-    }
 
     public Auto(boolean move, int age, String colour, Number number, String... characteristic) {
         this.move = move;
@@ -26,6 +15,26 @@ public class Auto {
         this.colour = colour;
         this.number = number;
         this.characteristic = characteristic;
+    }
+
+    public boolean isMove() {
+        return move;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getColour() {
+        return colour;
+    }
+
+    public Number getNumber() {
+        return number;
+    }
+
+    public String[] getCharacteristic() {
+        return characteristic;
     }
 
     @Override
