@@ -15,3 +15,17 @@
 2022-07-17 19:37:09,783 DEBUG ru.job4j.io.UsageLog4j:main:19 - User info name : Petr Arsentev
 2022-07-17 19:37:09,799  WARN ru.job4j.io.UsageLog4j:main:20 - byte : 127, short : 32000, int : 99999, long : 100500, float : 1.05, double : 100500.99, boolean : true, char : Y.
 2022-07-17 19:37:09,799 ERROR ru.job4j.io.UsageLog4j:main:23 - The arguments were not found
+2022-08-04 20:18:07,557 DEBUG ru.job4j.io.UsageLog4j:main:19 - User info name : Petr Arsentev
+2022-08-04 20:18:07,573  WARN ru.job4j.io.UsageLog4j:main:20 - byte : 127, short : 32000, int : 99999, long : 100500, float : 1.05, double : 100500.99, boolean : true, char : Y.
+2022-08-04 20:18:07,573 ERROR ru.job4j.io.UsageLog4j:main:23 - The arguments were not found
+2022-08-04 20:19:12,885 DEBUG ru.job4j.io.UsageLog4j:main:19 - User info name : Petr Arsentev
+2022-08-04 20:19:12,900  WARN ru.job4j.io.UsageLog4j:main:20 - byte : 127, short : 32000, int : 99999, long : 100500, float : 1.05, double : 100500.99, boolean : true, char : Y.
+2022-08-04 20:19:12,900 ERROR ru.job4j.io.UsageLog4j:main:23 - The arguments were not found
+2022-08-04 20:21:31,027 DEBUG ru.job4j.io.UsageLog4j:main:19 - User info name : Petr Arsentev
+2022-08-04 20:21:31,027 ERROR ru.job4j.io.UsageLog4j:main:22 - The arguments were not found
+2022-08-04 20:21:52,777 DEBUG ru.job4j.io.UsageLog4j:main:19 - User info name : Petr Arsentev
+2022-08-04 20:21:52,797  WARN ru.job4j.io.UsageLog4j:main:20 - byte : 127, short : 32000, int : 99999, long : 100500, float : 1.05, double : 100500.99, boolean : true, char : Y.
+2022-08-04 20:21:52,797 ERROR ru.job4j.io.UsageLog4j:main:23 - The arguments were not found
+2022-08-04 20:22:20,678 DEBUG ru.job4j.io.UsageLog4j:main:19 - User info name : Petr Arsentev
+2022-08-04 20:22:25,382  WARN ru.job4j.io.UsageLog4j:main:20 - byte : 127, short : 32000, int : 99999, long : 100500, float : 1.05, double : 100500.99, boolean : true, char : Y.
+2022-08-04 20:22:28,549 ERROR ru.job4j.io.UsageLog4j:main:23 - The arguments were not found
