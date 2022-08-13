@@ -8,6 +8,9 @@ import java.util.LinkedList;
 public class Visitor extends SimpleFileVisitor<Path> {
     private final String wanted;
     private final String typeSearch;
+    private boolean mask = true;
+    private boolean name = true;
+    private boolean regex = true;
     private final LinkedList<Path> foundling = new LinkedList<>();
 
     public Visitor(String wanted, String typeSearch) {
@@ -39,13 +42,19 @@ public class Visitor extends SimpleFileVisitor<Path> {
 
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-        if ("mask".equals(typeSearch)) {
+        if (mask && "mask".equals(typeSearch)) {
+            name = false;
+            regex = false;
             mask(file);
         }
-        if ("name".equals(typeSearch)) {
+        if (name && "name".equals(typeSearch)) {
+            mask = false;
+            regex = false;
             name(file);
         }
-        if ("regex".equals(typeSearch)) {
+        if (regex && "regex".equals(typeSearch)) {
+            mask = false;
+            name = false;
             regex(file);
         }
         return super.visitFile(file, attrs);
