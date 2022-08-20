@@ -1,1 +1,0 @@
-insert into cars(name, year, move) VALUES('LADA', 2020, true);

@@ -1,2 +1,0 @@
-ALTER TABLE cars
-RENAME COLUMN yes TO move;
