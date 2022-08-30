@@ -25,10 +25,10 @@ select * from auto
 join specifications spec on spec.auto_id = auto.id;
 
 select auto.name Имя, spec.year as "Год выпуска" 
-from auto join specifications spec on spec.year > 2017 and spec.auto_id = auto.id;
+from auto join specifications spec on spec.auto_id = auto.id where spec.year > 2017;
 
 select * from auto 
-join specifications spec on auto.move = true and spec.auto_id = auto.id;
+join specifications spec on spec.auto_id = auto.id where auto.move = true;
 
-select auto.name Имя, auto.move as "На ходу"
-from auto join specifications spec on auto.colour is not null and spec.auto_id = auto.id;
+select auto.name Имя, auto.colour, auto.move as "На ходу"
+from auto join specifications spec on spec.auto_id = auto.id where auto.colour is not null;
