@@ -42,12 +42,16 @@ values ('Молоко Талицкое', 3, date '15.09.2022', 70.00);
 insert into product(name, type_id, expired_date, price) 
 values ('Молоко деревенское', 3, date '10.09.2022', 80.00);
 
-SELECT * from type where name like 'Сыр';
-SELECT * from product where type_id = 1;
+SELECT tp.name as "Тип продукта", pr.name as "Имя продукта",
+pr.expired_date, pr.price
+from type tp
+join product pr
+on tp.id = pr.type_id
+where tp.name like 'Сыр';
 
 SELECT * from product where name like '%Мороженное%';
 
-SELECT * from product where expired_date < '02.09.2022';
+SELECT * from product where expired_date < current_date;
 
 SELECT tp.name as "Тип продукта", max(pr.price) as "Максимальная стоимость"
 from product pr
@@ -57,8 +61,7 @@ group by tp.name;
 
 SELECT pr.name, pr.price
 from product pr
-group by pr.name, pr.price
-having pr.price = (select max(price) from product);
+where  pr.price = (select max(price) from product);
 
 SELECT tp.name as "Тип продукта", count(pr.name) as "Количество продуктов"
 from product pr
