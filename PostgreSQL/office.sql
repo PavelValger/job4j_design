@@ -19,7 +19,7 @@ select * from departments d right join employees e on e.department_id = d.id;
 select * from departments d full join employees e on e.department_id = d.id;
 select * from departments d CROSS join employees e;
 
-select * from departments d left join employees e on d.employee_id = e.id
+select * from departments d left join employees e on e.department_id = d.id
 where e.id is null;
 
 select d.name "Отдел", e.department_id, e.name "Сотрудник"
