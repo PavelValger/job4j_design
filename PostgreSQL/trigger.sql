@@ -33,9 +33,7 @@ create or replace function tax20()
     returns trigger as
 $$
     BEGIN
-        update products
-        set price = price + price * 0.2
-        where id = (select max(id) from products);
+		new.price = new.price + new.price * 0.2;
         return NEW;
     END;
 $$
@@ -61,8 +59,8 @@ create or replace function history()
     returns trigger as
 $$
     BEGIN
-        insert into history_of_price (id, name, price, date)
-		values (new.id, new.name, new.price, current_date);
+        insert into history_of_price (name, price, date)
+		values (new.name, new.price, current_date);
         return NEW;
     END;
 $$
