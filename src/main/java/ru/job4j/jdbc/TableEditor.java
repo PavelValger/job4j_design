@@ -1,7 +1,5 @@
 package ru.job4j.jdbc;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -15,17 +13,7 @@ public class TableEditor implements AutoCloseable {
 
     public TableEditor(Properties properties) throws SQLException, ClassNotFoundException {
         this.properties = properties;
-        classLoader();
         initConnection();
-    }
-
-    private void classLoader() {
-        try (InputStream in = TableEditor.class.getClassLoader()
-                .getResourceAsStream("app.properties")) {
-            properties.load(in);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     private void initConnection() throws ClassNotFoundException, SQLException {
@@ -103,7 +91,7 @@ public class TableEditor implements AutoCloseable {
     }
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        TableEditor tableEditor = new TableEditor(new Properties());
+        TableEditor tableEditor = new TableEditor(new ClassLoader().getProperties());
         tableEditor.createTable("demo_table()");
         var connect = tableEditor.connection;
         System.out.println(getTableScheme(connect, "demo_table"));
@@ -114,7 +102,6 @@ public class TableEditor implements AutoCloseable {
         tableEditor.dropColumn("demo_table", "game");
         System.out.println(getTableScheme(connect, "demo_table"));
         tableEditor.dropTable("demo_table");
-        tableEditor.close();
     }
 
     @Override
