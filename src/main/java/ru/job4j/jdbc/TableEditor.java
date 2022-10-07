@@ -90,18 +90,21 @@ public class TableEditor implements AutoCloseable {
         return buffer.toString();
     }
 
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        TableEditor tableEditor = new TableEditor(new ClassLoader().getProperties());
-        tableEditor.createTable("demo_table()");
-        var connect = tableEditor.connection;
-        System.out.println(getTableScheme(connect, "demo_table"));
-        tableEditor.addColumn("demo_table", "games", "text");
-        System.out.println(getTableScheme(connect, "demo_table"));
-        tableEditor.renameColumn("demo_table", "games", "game");
-        System.out.println(getTableScheme(connect, "demo_table"));
-        tableEditor.dropColumn("demo_table", "game");
-        System.out.println(getTableScheme(connect, "demo_table"));
-        tableEditor.dropTable("demo_table");
+    public static void main(String[] args) {
+        try (TableEditor tableEditor = new TableEditor(new ClassLoader().getProperties())) {
+            tableEditor.createTable("demo_table()");
+            var connect = tableEditor.connection;
+            System.out.println(getTableScheme(connect, "demo_table"));
+            tableEditor.addColumn("demo_table", "games", "text");
+            System.out.println(getTableScheme(connect, "demo_table"));
+            tableEditor.renameColumn("demo_table", "games", "game");
+            System.out.println(getTableScheme(connect, "demo_table"));
+            tableEditor.dropColumn("demo_table", "game");
+            System.out.println(getTableScheme(connect, "demo_table"));
+            tableEditor.dropTable("demo_table");
+        } catch (SQLException | ClassNotFoundException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     @Override
