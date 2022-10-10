@@ -20,7 +20,7 @@ public class ImportDB {
         this.dump = dump;
     }
 
-    public List<User> load() throws IOException {
+    public List<User> load() {
         List<User> users = new ArrayList<>();
         try (BufferedReader read = new BufferedReader(new FileReader(dump, CODING))) {
             for (String line = read.readLine(); line != null; line = read.readLine()) {
