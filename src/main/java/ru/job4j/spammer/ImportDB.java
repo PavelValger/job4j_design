@@ -1,7 +1,7 @@
 package ru.job4j.spammer;
 
 import java.io.*;
-import java.nio.file.Path;
+import java.nio.charset.Charset;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -9,9 +9,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-import java.util.Scanner;
 
 public class ImportDB {
+    private static final Charset CODING = Charset.forName("UTF-8");
     private final Properties cfg;
     private final String dump;
 
@@ -22,13 +22,21 @@ public class ImportDB {
 
     public List<User> load() throws IOException {
         List<User> users = new ArrayList<>();
-        try (var scanner = new Scanner(Path.of(dump)).useDelimiter(
-                String.format(";%n"))) {
-            while (scanner.hasNext()) {
-                String[] divider = scanner.next().split(";", 2);
-                User user = new User(divider[0], divider[1]);
-                users.add(user);
+        try (BufferedReader read = new BufferedReader(new FileReader(dump, CODING))) {
+            for (String line = read.readLine(); line != null; line = read.readLine()) {
+                if (!line.startsWith("#") && !line.isEmpty()) {
+                    String[] divider = line.split(";");
+                    if (divider.length != 2 || divider[0].isEmpty() || divider[1].isEmpty()) {
+                        throw new IllegalArgumentException(String.format(
+                                "Attention! Invalid line in the document - \"%s\"", line)
+                        );
+                    }
+                    User user = new User(divider[0], divider[1]);
+                    users.add(user);
+                }
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return users;
     }
