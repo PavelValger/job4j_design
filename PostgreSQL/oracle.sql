@@ -50,14 +50,8 @@ where cmp.id != 5;
 SELECT cmp.name as "Company name", count(pr.company_id) as "Number of persons"
 from person pr
 join company cmp
-on pr.company_id = cmp.id,
-(
-SELECT max(counter.total) as maximum
-from (
-SELECT cmp.name, count(pr.company_id) as total
-from person pr
-join company cmp
 on pr.company_id = cmp.id
-GROUP by cmp.name) as counter) as meaning
-GROUP by cmp.name, meaning.maximum
-having meaning.maximum = count(pr.company_id);
+GROUP by cmp.name
+having count(pr.company_id) >= all (
+	select count(*) 
+	from person p group by p.company_id);
