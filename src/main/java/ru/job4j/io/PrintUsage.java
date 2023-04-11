@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 
 public class PrintUsage {
     public static void main(String[] args) {
+        System.out.println("s");
         try (PrintStream stream = new PrintStream(new FileOutputStream("data/print.txt"));
              PrintWriter writer = new PrintWriter("data/write.txt")) {
             stream.println("Из PrintStream в FileOutputStream");
